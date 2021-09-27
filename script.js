@@ -55,5 +55,6 @@ function game() {
     rps();
     console.log('You won %s games', playerScore);
     console.log('Computer won %s games', compScore);
+    window.alert("Thanks for Playing!")
 
 }
