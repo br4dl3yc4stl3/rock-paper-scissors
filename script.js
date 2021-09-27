@@ -42,6 +42,10 @@ function game() {
             console.log("YOU WIN, Congrats!!!");
             playerScore++;
         }
+        else if (playerChoice != "rock" || "paper" || "scissors") {
+            console.log("Only 3 choices are rock, paper, scissors");
+            window.alert("ERROR: Please read console message");          
+        }
         console.log(playerChoice);
         console.log(compChoice);
         
