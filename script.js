@@ -48,13 +48,16 @@ function game() {
         }
         console.log(playerChoice);
         console.log(compChoice);
+        console.log('You won %s games', playerScore);
+        console.log('Computer won %s games', compScore);
         
     }
-    rps();
-    rps();
-    rps();
-    console.log('You won %s games', playerScore);
-    console.log('Computer won %s games', compScore);
+    
+
+    while (playerScore < 5 && compScore < 5) {
+        rps();
+    }
+    
     window.alert("Thanks for Playing!")
 
 }
