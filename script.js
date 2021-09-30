@@ -1,63 +1,51 @@
-function hello() {
-    console.log("Hello, World!")
+let playerScore = 0;
+let compScore = 0;
+let playerChoice;
+
+
+function playRound(playerChoice, compChoice) {
+    if (playerChoice === compChoice) {
+        window.alert("Tie");
+        console.log("Nobody scores...")
+        console.log(playerScore, compScore)
+    }
+    else if ((playerChoice==='rock' && compChoice=='scissors') ||
+            (playerChoice==='paper' && compChoice==='rock') ||
+            (playerChoice==='scissors' && compChoice==='paper')) {
+                window.alert("Player wins this round!");
+                playerScore++
+                console.log("Player scores 1 point!")
+                console.log(playerScore, compScore)
+                if (playerScore === 5) {
+                    alert("You WON!! Thanks for playing!")
+                }
+    }
+    else if ((playerChoice==='rock' && compChoice=='paper') ||
+            (playerChoice==='paper' && compChoice==='scissors') ||
+            (playerChoice==='scissors' && compChoice==='rock')) {
+                window.alert("Computer wins this round...");
+                compScore++;
+                console.log("Computer scores 1 point :(")
+                console.log(playerScore, compScore)
+                if (compScore === 5) {
+                    alert("Sorry you LOST :(... Thanks for playing.")
+                }
+    }
+
 }
 
+const rockBtn = document.getElementById('rockBtn');
+const paperBtn = document.getElementById('paperBtn');
+const scissorsBtn = document.getElementById('scissorsBtn');
 
-function game() {
-    let playerScore = 0;
-    let compScore = 0;
-    function rps() {
-        let playerChoice = prompt("Choose wisely...", "");
-        let compChoice = ["rock", "paper", "scissors"][~~(Math.random() * 3)];
-        if (playerChoice === "rock" && compChoice === "rock") {
-            console.log("It's a tie...")
-        }
-        else if (playerChoice === "rock" && compChoice === "paper") {
-            console.log("Computer Wins, that means, YOU LOSE...");
-            compScore++;
-        }
-        else if (playerChoice === "rock" && compChoice === "scissors") {
-            console.log("YOU WIN, Congrats!!!");
-            playerScore++;
-        }
-        else if (playerChoice === "scissors" && compChoice === "scissors") {
-            console.log("It's a tie...")
-        }
-        else if (playerChoice === "scissors" && compChoice === "rock") {
-            console.log("Computer Wins, that means, YOU LOSE...");
-            compScore++;
-        }
-        else if (playerChoice === "scissors" && compChoice === "paper") {
-            console.log("YOU WIN, Congrats!!!");
-            playerScore++;
-        }
-        else if (playerChoice === "paper" && compChoice === "paper") {
-            console.log("It's a tie...")
-        }
-        else if (playerChoice === "paper" && compChoice === "scissors") {
-            console.log("Computer Wins, that means, YOU LOSE...");
-            compScore++;
-        }
-        else if (playerChoice === "paper" && compChoice === "rock") {
-            console.log("YOU WIN, Congrats!!!");
-            playerScore++;
-        }
-        else if (playerChoice != "rock" || "paper" || "scissors") {
-            console.log("Only 3 choices are rock, paper, scissors");
-            window.alert("ERROR: Please read console message");          
-        }
-        console.log(playerChoice);
-        console.log(compChoice);
-        console.log('You won %s games', playerScore);
-        console.log('Computer won %s games', compScore);
-        
+rockBtn.addEventListener('click', () => handleClick('rock'))
+paperBtn.addEventListener('click', () => handleClick('paper'))
+scissorsBtn.addEventListener('click', () => handleClick('scissors'))
+
+function handleClick(playerChoice) {
+    if (playerScore < 5 && compScore < 5) {
+        const compChoice = ["rock", "paper", "scissors"][~~(Math.random() * 3)];
+        playRound(playerChoice, compChoice)
+        return
     }
-    
-
-    while (playerScore < 5 && compScore < 5) {
-        rps();
-    }
-    
-    window.alert("Thanks for Playing!")
-
 }
